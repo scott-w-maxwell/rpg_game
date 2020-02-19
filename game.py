@@ -8,8 +8,10 @@ positionY = 200
 positionX =  200
 movement = 10
 
+# option of character TODO add girl.png
+character = input("guy or girl:")
 
-image = pygame.image.load(r'assets/guy.png')
+image = pygame.image.load(f'assets/{character}.png')
 image = pygame.transform.scale(image, (100,150))
 screen.fill(background)
 screen.blit(image, (200,200))
