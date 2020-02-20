@@ -11,8 +11,11 @@ movement = 10
 # option of character TODO add girl.png
 character = input("guy or girl:")
 
+# Load Character sprite
 image = pygame.image.load(f'assets/{character}.png')
 image = pygame.transform.scale(image, (100,150))
+
+
 screen.fill(background)
 screen.blit(image, (200,200))
 pygame.key.set_repeat(10,100)
