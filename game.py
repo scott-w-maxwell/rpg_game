@@ -1,4 +1,6 @@
 import pygame
+import time
+
 pygame.init()
 background = (123, 196, 88)
 screen = pygame.display.set_mode(size=(400,400))
@@ -9,7 +11,6 @@ positionX =  200
 movement = 10
 
 # option of character TODO add girl.png
-# character = input("guy or girl:")
 
 
 # Load Guy Character
@@ -17,13 +18,20 @@ guy_right = pygame.image.load(r'assets/guy_right.png')
 guy_left = pygame.image.load(r'assets/guy_left.png')
 guy_right = pygame.transform.scale(guy_right, (100,150))
 guy_left = pygame.transform.scale(guy_left, (100,150))
+
+# Load objects
+tree = pygame.image.load(r'assets/tree.png')
+tree = pygame.transform.scale(tree, (100,150))
+
 current = guy_right
 
 screen.fill(background)
+screen.blit(tree,(200,100))
 screen.blit(guy_right, (200,200))
 pygame.key.set_repeat(10,100)
-pygame.mixer.music.load("assets/Black Parade.mp3") #TODO Create your own music
-pygame.mixer.music.play()
+# pygame.mixer.music.load("assets/Black Parade.mp3") #TODO Create your own music
+# pygame.mixer.music.play()
+
 
 while True:
 
@@ -39,6 +47,7 @@ while True:
 			positionY -= movement
 			screen.fill(background)
 			screen.blit(current, (positionX, positionY))
+			screen.blit(tree,(200,100))
 
 		if keys[pygame.K_a]:
 		
@@ -46,16 +55,20 @@ while True:
 			screen.fill(background)
 			screen.blit(guy_left, (positionX, positionY))
 			current = guy_left
+			screen.blit(tree,(200,100))
 
 		if keys[pygame.K_s]:
 			positionY += movement
 			screen.fill(background)
 			screen.blit(current, (positionX, positionY))
+			screen.blit(tree,(200,100))
+
 		if keys[pygame.K_d]:
 			positionX += movement
 			screen.fill(background)
 			screen.blit(guy_right, (positionX, positionY))
 			current = guy_right
+			screen.blit(tree,(200,100))
 			
 		
 		pygame.display.update()
