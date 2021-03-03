@@ -6,8 +6,8 @@ background = (123, 196, 88)
 screen = pygame.display.set_mode(size=(400,400))
 pygame.display.set_caption("First Game")
 # Used for character
-positionY = 200
-positionX =  200
+positionY = 150
+positionX = 150
 movement = 10
 
 # option of character TODO add girl.png
@@ -21,13 +21,17 @@ guy_left = pygame.transform.scale(guy_left, (100,150))
 
 # Load objects
 tree = pygame.image.load(r'assets/tree.png')
-tree = pygame.transform.scale(tree, (100,150))
 
-current = guy_right
+tree_x = 100
+tree_y = 150
+
+tree = pygame.transform.scale(tree, (100, 150))
+
+guy_direction = guy_right
 
 screen.fill(background)
-screen.blit(tree,(200,100))
-screen.blit(guy_right, (200,200))
+screen.blit(tree,(tree_x,tree_y))
+screen.blit(guy_right, (positionX,positionY))
 pygame.key.set_repeat(10,100)
 # pygame.mixer.music.load("assets/Black Parade.mp3") #TODO Create your own music
 # pygame.mixer.music.play()
@@ -44,31 +48,29 @@ while True:
 		
 		if keys[pygame.K_w]:
 		
-			positionY -= movement
 			screen.fill(background)
-			screen.blit(current, (positionX, positionY))
-			screen.blit(tree,(200,100))
+			tree_y = tree_y + movement
+			
 
 		if keys[pygame.K_a]:
 		
-			positionX -= movement
 			screen.fill(background)
-			screen.blit(guy_left, (positionX, positionY))
-			current = guy_left
-			screen.blit(tree,(200,100))
+			guy_direction = guy_left
+			tree_x = tree_x + movement
+			
 
 		if keys[pygame.K_s]:
-			positionY += movement
+
 			screen.fill(background)
-			screen.blit(current, (positionX, positionY))
-			screen.blit(tree,(200,100))
+			tree_y = tree_y - movement
+			
 
 		if keys[pygame.K_d]:
-			positionX += movement
+
 			screen.fill(background)
-			screen.blit(guy_right, (positionX, positionY))
-			current = guy_right
-			screen.blit(tree,(200,100))
+			guy_direction = guy_right
+			tree_x = tree_x - movement
 			
-		
+		screen.blit(guy_direction, (positionX, positionY))
+		screen.blit(tree,(tree_x, tree_y))
 		pygame.display.update()
