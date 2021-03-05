@@ -45,6 +45,9 @@ screen.blit(tree,(tree_x,tree_y))
 screen.blit(guy_right, (150,150))
 # pygame.key.set_repeat(10,100)
 
+pygame.mixer.music.load(r'assets/music.mp3')
+pygame.mixer.music.play()
+
 
 while True:
 
