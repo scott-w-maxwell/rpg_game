@@ -43,7 +43,7 @@ background_y = 0
 screen.blit(background, (background_x,background_y))
 screen.blit(tree,(tree_x,tree_y))
 screen.blit(guy_right, (150,150))
-pygame.key.set_repeat(10,100)
+# pygame.key.set_repeat(10,100)
 
 
 while True:
