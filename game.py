@@ -1,9 +1,10 @@
 import pygame
 import time
 
+# initialize pygame
 pygame.init()
 
-screen = pygame.display.set_mode(size=(720,400))
+screen = pygame.display.set_mode(size=(400,400))
 pygame.display.set_caption("First Game")
 
 # Used for character
@@ -25,6 +26,9 @@ guy_walk_right_lfoot = pygame.transform.scale(guy_walk_right_lfoot,(100,150))
 
 guy_direction = guy_right
 
+
+guy_location = pygame.Rect(150,150,150,150)
+
 # Load objects
 
 #Trees
@@ -32,6 +36,8 @@ tree = pygame.image.load(r'assets/tree.png')
 tree_x = 100
 tree_y = 150
 tree = pygame.transform.scale(tree, (100, 150))
+
+tree_location = pygame.Rect(100,100,100,100)
 
 
 # Background (map)
@@ -43,15 +49,15 @@ background_y = 0
 screen.blit(background, (background_x,background_y))
 screen.blit(tree,(tree_x,tree_y))
 screen.blit(guy_right, (150,150))
-# pygame.key.set_repeat(10,100)
 
-pygame.mixer.music.load(r'assets/music.mp3')
+pygame.mixer.music.load(r'assets/music.ogg')
 pygame.mixer.music.play()
 
 
 while True:
 
 	for event in pygame.event.get():
+		
 		if event.type == pygame.QUIT:
 			pygame.quit()
 			quit()
@@ -67,12 +73,12 @@ while True:
 			screen.blit(background, (background_x, background_y))
 			screen.blit(guy_walk_right_rfoot, (150, 150))
 			screen.blit(tree,(tree_x, tree_y))
-			pygame.display.update()
+			pygame.display.update((guy_location, tree_location))
 			time.sleep(.05)
 			screen.blit(background, (background_x, background_y))
 			screen.blit(tree,(tree_x, tree_y))
 			screen.blit(guy_walk_right_lfoot, (150, 150))
-			pygame.display.update()
+			pygame.display.update((guy_location, tree_location))
 			time.sleep(.05)
 
 		if keys[pygame.K_a]:
