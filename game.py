@@ -27,8 +27,6 @@ guy_walk_right_lfoot = pygame.transform.scale(guy_walk_right_lfoot,(100,150))
 guy_direction = guy_right
 
 
-guy_location = pygame.Rect(150,150,150,150)
-
 # Load objects
 
 #Trees
@@ -36,8 +34,6 @@ tree = pygame.image.load(r'assets/tree.png')
 tree_x = 100
 tree_y = 150
 tree = pygame.transform.scale(tree, (100, 150))
-
-tree_location = pygame.Rect(100,100,100,100)
 
 
 # Background (map)
@@ -54,7 +50,10 @@ pygame.mixer.music.load(r'assets/music.ogg')
 pygame.mixer.music.play()
 
 
-while True:
+runing = True
+while runing:
+
+	pygame.display.update()
 
 	for event in pygame.event.get():
 		
@@ -64,66 +63,34 @@ while True:
 
 		keys = pygame.key.get_pressed()
 		
+
+		# Up
 		if keys[pygame.K_w]:
 			
 			tree_y = tree_y + movement
 			background_y = background_y + movement
 
-			# Walking Animation
-			screen.blit(background, (background_x, background_y))
-			screen.blit(guy_walk_right_rfoot, (150, 150))
-			screen.blit(tree,(tree_x, tree_y))
-			pygame.display.update((guy_location, tree_location))
-			time.sleep(.05)
-			screen.blit(background, (background_x, background_y))
-			screen.blit(tree,(tree_x, tree_y))
-			screen.blit(guy_walk_right_lfoot, (150, 150))
-			pygame.display.update((guy_location, tree_location))
-			time.sleep(.05)
-
+		# Left
 		if keys[pygame.K_a]:
 			
 			guy_direction = guy_left
 			tree_x = tree_x + movement
 			background_x = background_x + movement
 			
-
+		# Down
 		if keys[pygame.K_s]:
 
 			tree_y = tree_y - movement
 			background_y = background_y - movement
 			
-			# Walking Animation
-			screen.blit(background, (background_x, background_y))
-			screen.blit(guy_walk_right_rfoot, (150, 150))
-			screen.blit(tree,(tree_x, tree_y))
-			pygame.display.update()
-			time.sleep(.05)
-			screen.blit(background, (background_x, background_y))
-			screen.blit(tree,(tree_x, tree_y))
-			screen.blit(guy_walk_right_lfoot, (150, 150))
-			pygame.display.update()
-			time.sleep(.05)
-
+		# Right
 		if keys[pygame.K_d]:
 
 			guy_direction = guy_right
 			tree_x = tree_x - movement
 			background_x = background_x - movement
 
-			# Walking Animation
-			screen.blit(background, (background_x, background_y))
-			screen.blit(guy_walk_right_rfoot, (150, 150))
-			screen.blit(tree,(tree_x, tree_y))
-			pygame.display.update()
-			time.sleep(.05)
-			screen.blit(background, (background_x, background_y))
-			screen.blit(tree,(tree_x, tree_y))
-			screen.blit(guy_walk_right_lfoot, (150, 150))
-			pygame.display.update()
-			time.sleep(.05)
-
 		screen.blit(background, (background_x, background_y))
 		screen.blit(guy_direction, (150, 150))
 		screen.blit(tree,(tree_x, tree_y))
-		pygame.display.update()
+		
